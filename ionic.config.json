@@ -1,0 +1,7 @@
+{
+  "name": "mobileMovies",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
