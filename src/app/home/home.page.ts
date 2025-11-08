@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   IonContent, // Já existia
   IonTitle,   // Adicionado para o título Bem-vindo(a)!
@@ -22,5 +23,18 @@ import {
   ],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private router: Router) {} 
+
+
+  //login
+  onLogin() {
+    console.log('Login successful. Navigating to movies list.');
+    this.router.navigate(['/filmes']);
+  }
+
+  //cadastro
+
+  onSignup() {
+    console.log('Navigating to signup/create account (placeholder).');
+  }
 }
