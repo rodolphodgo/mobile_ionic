@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; 
 import {
   IonContent,
   IonTitle,
@@ -21,24 +21,27 @@ import {
     IonItem,
     IonButton,
     IonIcon,
-    FormsModule
+    FormsModule 
   ],
 })
 export class HomePage {
   usernameOrEmail = '';
-  password = '';
+  password = '';       
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {} 
 
   onLogin() {
+    
     if (this.usernameOrEmail && this.password) {
-      this.router.navigate(['/filmes']);
+      console.log('Login successful. Navigating to movies list.');
+      this.router.navigate(['/filmes']); 
     } else {
       alert('Por favor, preencha o usuário/email e a senha.');
     }
   }
 
   onSignup() {
-    this.router.navigate(['/cadastro']);
+   
+    this.router.navigate(['/cadastro']); 
   }
 }
