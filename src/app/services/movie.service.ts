@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// Interface simples para o tipo de dados que esperamos
-// (Você pode expandir esta interface conforme necessário)
+
 export interface Movie {
   id: number;
   title: string;

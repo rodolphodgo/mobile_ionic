@@ -13,6 +13,7 @@
         <ion-icon name="person" slot="start"></ion-icon>
         <ion-input label="Usuário ou Email" 
                    labelPlacement="floating" 
+                   [(ngModel)]="usernameOrEmail" 
                    placeholder="Digite seu usuário ou email">
         </ion-input>
       </ion-item>
@@ -22,16 +23,17 @@
         <ion-input label="Senha" 
                    labelPlacement="floating" 
                    type="password" 
+                   [(ngModel)]="password" 
                    placeholder="Digite sua senha">
         </ion-input>
       </ion-item>
 
-      <ion-button expand="block" class="login-btn" color="primary">
+      <ion-button expand="block" class="login-btn" color="primary" (click)="onLogin()">
         Entrar
         <ion-icon slot="end" name="log-in"></ion-icon>
       </ion-button>
 
-      <ion-button expand="block" class="signup-btn" fill="clear">
+      <ion-button expand="block" class="signup-btn" fill="clear" (click)="onSignup()">
         Criar conta
         <ion-icon slot="end" name="person-add"></ion-icon>
       </ion-button>

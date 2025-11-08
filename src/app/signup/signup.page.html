@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Criar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="signup-wrapper">
+    <div class="signup-container">
+      
+      <ion-title class="ion-text-center ion-padding-bottom">Junte-se ao CineCrítica</ion-title>
+
+      <ion-item>
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input label="Email" 
+                   labelPlacement="floating" 
+                   type="email"
+                   [(ngModel)]="email"
+                   placeholder="Digite seu email">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-input label="Usuário" 
+                   labelPlacement="floating" 
+                   type="text"
+                   [(ngModel)]="username"
+                   placeholder="Crie seu usuário">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="lock-closed" slot="start"></ion-icon>
+        <ion-input label="Senha" 
+                   labelPlacement="floating" 
+                   type="password" 
+                   [(ngModel)]="password"
+                   placeholder="Crie sua senha">
+        </ion-input>
+      </ion-item>
+
+      <ion-button expand="block" 
+                  class="register-btn" 
+                  color="secondary"
+                  (click)="onRegister()">
+        Cadastrar
+        <ion-icon slot="end" name="log-in"></ion-icon>
+      </ion-button>
+      
+    </div>
+  </div>
+</ion-content>

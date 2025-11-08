@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/filmes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do Filme</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card *ngIf="movieDetails">
+    <ion-card-header>
+      <ion-card-title>{{ movieDetails.title }}</ion-card-title>
+      <ion-card-subtitle>{{ movieDetails.subtitle }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ movieDetails.overview }}</p>
+      
+      <p class="ion-padding-top">ID do Filme (parâmetro de rota): **{{ movieId }}**</p>
+      
+      <ion-button expand="block" color="warning" class="ion-margin-top">
+        Deixar minha crítica
+        <ion-icon slot="end" name="chatbox-ellipses"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="!movieDetails" class="ion-text-center ion-padding">
+    <p>Filme não encontrado ou ID ausente.</p>
+  </div>
+</ion-content>

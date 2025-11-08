@@ -1,26 +1,44 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import {
-  IonContent, 
-  IonTitle,   
-  IonInput,   
-  IonItem,   
-  IonButton,  
-  IonIcon    
+  IonContent,
+  IonTitle,
+  IonInput,
+  IonItem,
+  IonButton,
+  IonIcon
 } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'], 
+  styleUrls: ['home.page.scss'],
   imports: [
     IonContent,
     IonTitle,
     IonInput,
     IonItem,
     IonButton,
-    IonIcon
+    IonIcon,
+    FormsModule
   ],
 })
 export class HomePage {
-  constructor() {}
+  usernameOrEmail = '';
+  password = '';
+
+  constructor(private router: Router) {}
+
+  onLogin() {
+    if (this.usernameOrEmail && this.password) {
+      this.router.navigate(['/filmes']);
+    } else {
+      alert('Por favor, preencha o usuário/email e a senha.');
+    }
+  }
+
+  onSignup() {
+    this.router.navigate(['/cadastro']);
+  }
 }
