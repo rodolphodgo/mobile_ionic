@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
-import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
+import { Router } from '@angular/router';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
   IonToolbar,
   IonList,
   IonListHeader,
@@ -12,7 +12,7 @@ import {
   IonSpinner
 } from '@ionic/angular/standalone';
 import { MovieService, Movie } from '../services/movie.service';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../pipes/truncate.pipe';
 import { HighlightDirective } from '../directives/highlight.directive';
 
@@ -22,9 +22,9 @@ import { HighlightDirective } from '../directives/highlight.directive';
   styleUrls: ['./list-movies.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, 
-    IonToolbar, 
-    IonTitle, 
+    IonHeader,
+    IonToolbar,
+    IonTitle,
     IonContent,
     IonList,
     IonListHeader,
@@ -36,9 +36,9 @@ import { HighlightDirective } from '../directives/highlight.directive';
     HighlightDirective
   ],
 })
-export class ListMoviesPage implements OnInit { 
+export class ListMoviesPage implements OnInit {
   movies: Movie[] = [];
-  isLoading = true; 
+  isLoading = true;
 
   constructor(private movieService: MovieService, private router: Router) {}
 
@@ -48,20 +48,18 @@ export class ListMoviesPage implements OnInit {
 
   loadMovies() {
     this.movieService.getPopularMovies().subscribe({
-      next: (data) => {
+      next: (data: { results: Movie[] }) => {
         this.movies = data.results;
         this.isLoading = false;
-        console.log('Filmes carregados:', this.movies);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.isLoading = false;
         console.error('Erro ao carregar filmes:', err);
       }
     });
   }
-  
 
   goToDetails(movieId: number) {
-    this.router.navigate(['/filme-detalhe', movieId]);
+    this.router.navigate(['/movie-details', movieId]);
   }
 }

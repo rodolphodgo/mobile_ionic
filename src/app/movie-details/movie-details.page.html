@@ -1,31 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/filmes"></ion-back-button>
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalhes do Filme</ion-title>
+    <ion-title>{{ movie?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-card *ngIf="movieDetails">
-    <ion-card-header>
-      <ion-card-title>{{ movieDetails.title }}</ion-card-title>
-      <ion-card-subtitle>{{ movieDetails.subtitle }}</ion-card-subtitle>
-    </ion-card-header>
 
-    <ion-card-content>
-      <p>{{ movieDetails.overview }}</p>
-      
-      <p class="ion-padding-top">ID do Filme (parâmetro de rota): **{{ movieId }}**</p>
-      
-      <ion-button expand="block" color="warning" class="ion-margin-top">
-        Deixar minha crítica
-        <ion-icon slot="end" name="chatbox-ellipses"></ion-icon>
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-  <div *ngIf="!movieDetails" class="ion-text-center ion-padding">
-    <p>Filme não encontrado ou ID ausente.</p>
+  <div class="details-container" *ngIf="movie">
+    <img
+      class="poster"
+      *ngIf="movie.poster_path"
+      [src]="imageBase + movie.poster_path"
+      [alt]="movie.title"
+    />
+
+    <h1 class="title">{{ movie.title }}</h1>
+
+    <p class="sub-info">
+      ⭐ {{ movie.vote_average.toFixed(1) }}
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      📅 {{ movie.release_date | date:'dd/MM/yyyy' }}
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      🔥 {{ movie.popularity | number }}
+    </p>
+
+    <p class="overview">{{ movie.overview }}</p>
+
+    <ion-button expand="block" color="warning" class="btn-review">
+      Deixar minha crítica
+      <ion-icon slot="end" name="chatbox-ellipses"></ion-icon>
+    </ion-button>
   </div>
+
+  <div *ngIf="!movie" class="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
 </ion-content>

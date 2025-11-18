@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Necessário para @if e @for
-import { IonicModule } from '@ionic/angular'; // Necessário para os componentes Ionic
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-
-// Seus arquivos personalizados
+import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from '../services/movie.service';
 import { HighlightDirective } from '../directives/highlight.directive';
 import { TruncatePipe } from '../pipes/truncate.pipe';
@@ -12,18 +11,18 @@ import { TruncatePipe } from '../pipes/truncate.pipe';
 @Component({
   standalone: true,
   selector: 'app-home',
-  templateUrl: './home.page.html', // Link para o arquivo HTML
-  styleUrls: ['./home.page.scss'], // Link para o arquivo CSS
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    HighlightDirective, // Sua diretiva
-    TruncatePipe        // Seu pipe
+    HttpClientModule,
+    HighlightDirective,
+    TruncatePipe
   ]
 })
 export class HomePage implements OnInit {
-  // Variáveis que o HTML vai usar
   highlights: any[] = [];
   trending: any[] = [];
   recommended: any[] = [];
@@ -36,7 +35,6 @@ export class HomePage implements OnInit {
   }
 
   loadMovies() {
-    // Busca os filmes no serviço
     this.movieService.getTrending().subscribe((res: any) => {
       const results = res.results || [];
       this.trending = results;
@@ -45,7 +43,6 @@ export class HomePage implements OnInit {
     });
   }
 
-  // Função para abrir os detalhes
   openMovie(id: number) {
     this.router.navigate(['/movie-details', id]);
   }

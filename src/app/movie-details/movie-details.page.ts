@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { 
-  IonContent, 
-  IonHeader, 
-  IonTitle, 
-  IonToolbar, 
-  IonButton, 
-  IonIcon, 
-  IonBackButton, 
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
   IonButtons,
-  IonLabel,
-  IonCard, 
+  IonBackButton,
+  IonButton,
+  IonIcon,
+  IonCard,
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
   IonCardContent,
+  IonItem,
+  IonLabel,
+  IonSpinner
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -25,39 +28,36 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    IonHeader, 
-    IonToolbar, 
-    IonTitle, 
+    IonHeader,
+    IonToolbar,
+    IonTitle,
     IonContent,
     IonButtons,
     IonBackButton,
-    IonLabel,
     IonButton,
     IonIcon,
     IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardSubtitle,
-    IonCardContent
+    IonCardContent,
+    IonItem,
+    IonLabel,
+    IonSpinner
   ],
 })
 export class MovieDetailsPage implements OnInit {
-  movieId: string | null = null;
-  movieDetails: any = null;
+  movie: any = null;
+  imageBase = 'https://image.tmdb.org/t/p/w500';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private movieService: MovieService) {}
 
   ngOnInit() {
-   
-    this.movieId = this.route.snapshot.paramMap.get('id');
-    
-
-    if (this.movieId) {
-      this.movieDetails = {
-        title: `Filme ID ${this.movieId}`,
-        subtitle: 'Aventura/Ficção',
-        overview: `Esta é a descrição detalhada do Filme com ID ${this.movieId}. Clique para deixar sua crítica.`,
-      };
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.movieService.getMovie(id).subscribe((res) => {
+        this.movie = res;
+      });
     }
   }
 }

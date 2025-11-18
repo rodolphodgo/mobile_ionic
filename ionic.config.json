@@ -1,12 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "projetododemonio",
+  "name": "mobile_ionic",
   "integrations": {},
-=======
-  "name": "mobileMovies",
-  "integrations": {
-    "capacitor": {}
-  },
->>>>>>> e85c4da971b13a4d08b4207c8a939efb5840d16b
-  "type": "angular-standalone"
+  "type": "angular"
 }
