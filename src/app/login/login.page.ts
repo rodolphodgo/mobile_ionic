@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth/auth.service';
 
@@ -20,7 +20,8 @@ import { AuthService } from '../services/auth/auth.service';
     IonItem,
     IonLabel,
     IonInput,
-    IonButton
+    IonButton,
+    IonIcon
   ]
 })
 export class LoginPage {
@@ -41,6 +42,7 @@ export class LoginPage {
   }
 
   goToSignup() {
-    this.router.navigate(['/cadastro']);
+    this.router.navigate(['/signup']);
   }
 }
+

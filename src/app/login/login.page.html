@@ -4,26 +4,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content [fullscreen]="true">
+  <div class="login-wrapper">
+    <div class="login-container">
+      <img src="assets/icon/filme-logo.png" 
+           alt="Logo do Aplicativo" 
+           class="app-logo">
+      <ion-title class="ion-text-center ion-padding-bottom">Junte-se ao CineCrítica</ion-title>
 
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input [(ngModel)]="email" type="email"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input label="Usuário" 
+                   labelPlacement="floating" 
+                   type="text" 
+                   [(ngModel)]="email"
+                   placeholder="Disite o usuário...">
+        </ion-input>
+      </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Senha</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-input label="Senha" 
+                   labelPlacement="floating" 
+                   type="password" 
+                   [(ngModel)]="password"
+                   placeholder="Digite a senha...">
+        </ion-input>
+      </ion-item>
 
-  <p *ngIf="error" class="error">{{ error }}</p>
+      <p *ngIf="error" class="error">{{ error }}</p>
 
-  <ion-button expand="block" color="primary" (click)="login()">
-    Entrar
-  </ion-button>
+      <ion-button expand="block" 
+                  class="entrar" 
+                  color="secondary"
+                  (click)="login()">
+        ENTRAR
+        <ion-icon slot="end" name="log-in"></ion-icon>
+      </ion-button>
 
-  <ion-button expand="block" fill="clear" (click)="goToSignup()">
-    Criar Conta
-  </ion-button>
-
+      <ion-button expand="block" fill="clear" (click)="goToSignup()">
+        Criar Conta
+      </ion-button>
+      
+    </div>
+  </div>
 </ion-content>
