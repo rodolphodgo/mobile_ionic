@@ -1,46 +1,78 @@
 ion-content {
-  --background: linear-gradient(135deg, #7b1e3a, #b63f5a);
+ 
+  --background: url('/assets/icon/foto de fundo.png') no-repeat center center / 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
 }
+
 
 .login-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 20px;
 }
 
 .login-container {
-  background: #f4f4f4;
-  border-radius: 12px;
-  padding: 28px;
+  background: rgba(0, 0, 0, 0.75); 
+  border-radius: 14px;
+  padding: 30px;
   width: 90%;
   max-width: 380px;
   text-align: center;
+  backdrop-filter: blur(6px); 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
+
 
 .app-logo {
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
   border-radius: 12px;
-  border: 2px solid #7b1e3a;
-  margin-bottom: 20px;
+  border: 2px solid ; 
+  margin-bottom: 18px;
 }
 
+
+ion-item {
+  --background: rgba(255, 255, 255, 0.10);
+  --padding-start: 12px;
+  --inner-padding-end: 12px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+ion-input {
+  color: #fff !important;
+}
+
+ion-label {
+  color: #ddd !important;
+}
+
+
 .login-btn {
-  --background: #7b1e3a;
+  --background: #e50914; 
+  --background-hover: #b20710;
   --color: #fff;
   width: 100%;
   height: 50px;
-  border-radius: 8px;
-  margin-top: 12px;
+  border-radius: 10px;
+  margin-top: 14px;
+  font-weight: 600;
 }
 
 .signup-btn {
   --background: transparent;
-  border: 2px solid #7b1e3a;
-  color: #7b1e3a;
+  border: 2px solid #e50914;
+  color: #e50914;
   width: 100%;
   height: 50px;
-  border-radius: 8px;
-  margin-top: 12px;
+  border-radius: 10px;
+  margin-top: 14px;
+  font-weight: 600;
 }
