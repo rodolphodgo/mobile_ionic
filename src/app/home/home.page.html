@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Filmes Ionic</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- Bloco @if verifica se a variável 'highlights' existe (do TS) -->
+  @if (highlights.length === 0) {
+    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  } @else {
+
+    <!-- SEÇÃO DESTAQUES (Banner Gigante) -->
+    <h2 class="section-title">Destaques</h2>
+    
+    <!-- Classe "hero-row" -->
+    <div class="movie-row hero-row">
+      @for (movie of highlights; track movie.id) {
+        
+        <!-- Classe "hero-card" e imagem "backdrop_path" -->
+        <div class="movie-card hero-card" (click)="openMovie(movie.id)" appHighlight>
+          <img [src]="imageBase + movie.backdrop_path" [alt]="movie.title">
+          <p class="movie-title">{{ movie.title }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- SEÇÃO EM ALTA (Cards Normais) -->
+    <h2 class="section-title">Em Alta</h2>
+    <div class="movie-row">
+      @for (movie of trending; track movie.id) {
+        <div class="movie-card" (click)="openMovie(movie.id)" appHighlight>
+          <!-- Imagem "poster_path" (vertical) -->
+          <img [src]="imageBase + movie.poster_path" [alt]="movie.title">
+          <p class="movie-title">{{ movie.title | truncate:15 }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- SEÇÃO RECOMENDADOS (Lista Vertical) -->
+    <h2 class="section-title">Recomendados</h2>
+    <ion-list>
+      @for (movie of recommended; track movie.id) {
+        <ion-item button (click)="openMovie(movie.id)" detail="true">
+          <ion-thumbnail slot="start">
+            <img [src]="imageBase + movie.poster_path" />
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{ movie.title }}</h3>
+            <p>Lançamento: {{ movie.release_date | date:'dd/MM/yyyy' }}</p>
+            <p><ion-badge color="warning">{{ movie.vote_average.toFixed(1) }}</ion-badge></p>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+
+  }
+
+</ion-content>

@@ -1,0 +1,20 @@
+ion-content {
+  --background: #f4f4f4; 
+}
+
+.list-container {
+  padding: 16px;
+}
+
+.overview {
+  font-size: 0.8em;
+  color: #666;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+ion-list-header {
+  --background: #fff;
+  border-bottom: 1px solid #ddd;
+}
