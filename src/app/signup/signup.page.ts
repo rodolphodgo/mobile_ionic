@@ -11,9 +11,13 @@ import {
   IonInput, 
   IonItem,
   IonButtons, 
-  IonBackButton 
+  IonBackButton,
+  ToastController, 
+  IonToast          
 } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
+
+import { AuthService } from '../services/auth/auth.service'; 
 
 @Component({
   selector: 'app-signup',
@@ -32,7 +36,8 @@ import { CommonModule } from '@angular/common';
     IonInput, 
     IonItem,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    IonToast 
   ],
 })
 export class SignupPage implements OnInit {
@@ -40,22 +45,54 @@ export class SignupPage implements OnInit {
   email = '';
   username = '';
   password = '';
+  error = ''; 
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private auth: AuthService, 
+    private toastController: ToastController 
+  ) { }
 
   ngOnInit() {
   }
 
-  onRegister() {
-    console.log('Dados de Cadastro:', {
-      email: this.email,
-      username: this.username,
-      password: this.password,
+
+  async presentToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000, 
+      position: 'top',
+      color: color, 
+      buttons: [{ text: 'OK', role: 'cancel' }]
     });
     
+    await toast.present();
+  }
 
-    alert('Conta criada com sucesso! Faça login para continuar.');
-    this.router.navigate(['/login']); 
+
+  onRegister() {
+    this.error = ''; 
     
-   } 
+
+    if (!this.email || !this.password || !this.username) {
+      this.error = 'Todos os campos (Usuário, E-mail, Senha) são obrigatórios.';
+      this.presentToast(this.error, 'warning');
+      return;
+    }
+    
+    const result = this.auth.register(this.username, this.email, this.password);
+
+    if (result.success) {
+      this.presentToast('Conta criada com sucesso! Faça login para continuar.', 'success');
+      this.router.navigate(['/login']); 
+      
+    } else {
+      this.error = result.message || 'Erro ao criar conta. Tente novamente.';
+      this.presentToast(this.error, 'danger');
+    }
+  } 
+
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
 }

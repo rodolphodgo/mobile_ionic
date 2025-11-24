@@ -1,17 +1,56 @@
-h2 {
-  margin-bottom: 10px;
-  font-weight: 600;
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-secondary: #008744;
+  --ion-color-warning: #ffc409; 
+  --ion-color-medium: #92949c;
 }
 
-ion-card {
-  background-color: #1c1c1c;
-  border-radius: 12px;
+// ESTILO CRUCIAL: Define o tamanho do modal e o efeito de blur
+:host {
+  // Configura a "janela" flutuante
+  --width: 90%; 
+  --height: 90%; 
+  --border-radius: 12px;
+  --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+
+  // EFEITO BLUR NO FUNDO (BACKDROP)
+  ion-backdrop {
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.4);
+  }
 }
 
-.textarea {
-  background: #272727;
-  border-radius: 10px;
-  padding: 10px;
-  color: #fff;
-  margin-bottom: 20px;
+// Estilos internos do componente
+ion-content {
+  --background: #f4f5f8;
+}
+
+.custom-textarea {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  
+  textarea {
+    min-height: 100px;
+    border: 1px solid var(--ion-color-medium, #ccc);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: var(--ion-color-primary);
+      box-shadow: 0 0 0 1px var(--ion-color-primary);
+    }
+  }
+}
+
+ion-item.ion-no-padding {
+  --inner-padding-end: 0;
+  --padding-start: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

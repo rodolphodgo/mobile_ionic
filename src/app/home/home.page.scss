@@ -1,46 +1,45 @@
-/* 1. FUNDO GERAL */
 ion-content {
   --background: #141414;
   --color: #ffffff;
 }
 
-/* 2. TÍTULOS (Destaques, Em Alta...) */
+
 .section-title {
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
   margin: 20px 0 10px 16px;
-  border-left: 5px solid #e50914; /* Vermelho Netflix */
+  border-left: 5px solid #e50914;
   padding-left: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-/* 3. BARRA DE SCROLL */
+
 .movie-row {
   display: flex;
   overflow-x: auto;
   gap: 15px;
-  padding: 0 16px 20px; /* Espaço para a barra de scroll */
+  padding: 0 16px 20px;
   
-  /* Estilo da Barra */
+  
   &::-webkit-scrollbar {
     height: 6px;
-    display: block; /* Força a barra a aparecer */
+    display: block; 
   }
   
   &::-webkit-scrollbar-track {
-    background: #333; /* Fundo do trilho */
+    background: #333;
     border-radius: 3px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: #e50914; /* Cor da barra */
+    background: #e50914;
     border-radius: 3px;
   }
 }
 
-/* 4. CARDS NORMAIS (Em Alta) */
+
 .movie-card {
   flex: 0 0 auto;
   width: 140px;
@@ -58,13 +57,12 @@ ion-content {
   border-radius: 6px;
 }
 
-/* 5. BANNER GIGANTE (Destaques) */
+
 .hero-row {
   gap: 20px;
 }
 
 .hero-card {
-  /* Quase de canto a canto (85% da tela) */
   width: 85vw; 
   max-width: 400px;
   min-height: auto;
@@ -72,19 +70,19 @@ ion-content {
 
 .hero-card img {
   height: auto;
-  aspect-ratio: 16/9; /* Proporção de cinema */
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.7);
 }
 
 .hero-card .movie-title {
-  font-size: 18px; /* Título maior no banner */
+  font-size: 18px;
   margin-top: 12px;
   text-align: center;
 }
 
-/* 6. TÍTULO GERAL DOS CARDS */
+
 .movie-title {
   color: #e5e5e5;
   font-size: 13px;
@@ -95,7 +93,7 @@ ion-content {
   text-overflow: ellipsis;
 }
 
-/* 7. LISTA VERTICAL (Recomendados) */
+
 ion-list {
   background: transparent !important;
   padding: 0 16px 40px;

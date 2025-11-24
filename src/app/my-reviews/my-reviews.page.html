@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Minhas Críticas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="max-w-3xl mx-auto">
+
+    <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-primary">Suas Avaliações Salvas</h2>
+
+    <div *ngIf="myReviews.length === 0" class="text-center p-6 bg-white rounded-lg shadow">
+      <p class="text-lg text-gray-600">Você ainda não avaliou nenhum filme.</p>
+      <ion-button routerLink="/home" fill="clear" color="primary" class="mt-4">
+        Começar a Avaliar
+      </ion-button>
+    </div>
+
+    <ion-list *ngIf="myReviews.length > 0" lines="full" class="bg-transparent">
+      <ion-card *ngFor="let review of myReviews" class="shadow-lg mb-4 rounded-xl">
+        <ion-card-content>
+          <ion-item lines="none" class="bg-transparent p-0">
+            <ion-label class="space-y-1">
+              <div class="flex justify-between items-center mb-1">
+                <h3 class="text-xl font-bold text-gray-800">Filme ID: {{ review.movieId }}</h3>
+                
+                <span class="font-bold text-lg text-warning-600">
+                  {{ review.rating }}/5 
+                  <ion-icon name="star" color="warning" class="text-base"></ion-icon>
+                </span>
+              </div>
+              
+              <p class="text-sm text-gray-700 italic mt-2">"{{ review.reviewText }}"</p>
+              
+              <ion-note class="text-xs text-gray-400 block pt-2">
+                Salvo em: {{ review.createdAt | date: 'medium' }}
+              </ion-note>
+            </ion-label>
+          </ion-item>
+          
+          <div class="flex justify-end pt-3 border-t mt-3">
+            <ion-button color="danger" fill="clear" (click)="deleteReview(review)">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Excluir
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+    
+  </div>
+</ion-content>

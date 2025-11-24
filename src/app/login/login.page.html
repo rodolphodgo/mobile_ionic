@@ -13,17 +13,17 @@
       <ion-title class="ion-text-center ion-padding-bottom">Junte-se ao CineCrítica</ion-title>
 
       <ion-item>
-        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-icon name="person" slot="start"></ion-icon>
         <ion-input label="Usuário" 
                    labelPlacement="floating" 
                    type="text" 
-                   [(ngModel)]="email"
-                   placeholder="Disite o usuário...">
+                   [(ngModel)]="username"
+                   placeholder="Digite o usuário...">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-icon name="key" slot="start"></ion-icon>
         <ion-input label="Senha" 
                    labelPlacement="floating" 
                    type="password" 
@@ -34,12 +34,15 @@
 
       <p *ngIf="error" class="error">{{ error }}</p>
 
+
       <ion-button expand="block" 
                   class="entrar" 
                   color="secondary"
-                  (click)="login()">
-        ENTRAR
-        <ion-icon slot="end" name="log-in"></ion-icon>
+                  (click)="login()"
+                  [disabled]="isLoading">
+        <span *ngIf="!isLoading">ENTRAR</span>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <ion-icon slot="end" name="log-in" *ngIf="!isLoading"></ion-icon>
       </ion-button>
 
       <ion-button expand="block" fill="clear" (click)="goToSignup()">

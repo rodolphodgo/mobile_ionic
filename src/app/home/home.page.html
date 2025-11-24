@@ -1,26 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Filmes Ionic</ion-title>
+    <ion-title>CineCritica</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="profile-menu-trigger" fill="clear" color="primary">
+        <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+        <span class="font-semibold">{{ username }}</span>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <!-- Bloco @if verifica se a variável 'highlights' existe (do TS) -->
   @if (highlights.length === 0) {
     <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
       <ion-spinner name="crescent"></ion-spinner>
     </div>
   } @else {
 
-    <!-- SEÇÃO DESTAQUES (Banner Gigante) -->
+
     <h2 class="section-title">Destaques</h2>
-    
-    <!-- Classe "hero-row" -->
     <div class="movie-row hero-row">
       @for (movie of highlights; track movie.id) {
-        
-        <!-- Classe "hero-card" e imagem "backdrop_path" -->
         <div class="movie-card hero-card" (click)="openMovie(movie.id)" appHighlight>
           <img [src]="imageBase + movie.backdrop_path" [alt]="movie.title">
           <p class="movie-title">{{ movie.title }}</p>
@@ -28,19 +30,18 @@
       }
     </div>
 
-    <!-- SEÇÃO EM ALTA (Cards Normais) -->
+  
     <h2 class="section-title">Em Alta</h2>
     <div class="movie-row">
       @for (movie of trending; track movie.id) {
         <div class="movie-card" (click)="openMovie(movie.id)" appHighlight>
-          <!-- Imagem "poster_path" (vertical) -->
           <img [src]="imageBase + movie.poster_path" [alt]="movie.title">
           <p class="movie-title">{{ movie.title | truncate:15 }}</p>
         </div>
       }
     </div>
 
-    <!-- SEÇÃO RECOMENDADOS (Lista Vertical) -->
+
     <h2 class="section-title">Recomendados</h2>
     <ion-list>
       @for (movie of recommended; track movie.id) {
@@ -60,3 +61,26 @@
   }
 
 </ion-content>
+
+
+<ion-popover trigger="profile-menu-trigger" triggerAction="click" side="bottom" alignment="end">
+  <ng-template>
+    <ion-content>
+      <ion-list lines="none">
+        
+      
+        <ion-item button (click)="goToMyReviews($event)" detail="false">
+          <ion-icon slot="start" name="star-outline"></ion-icon>
+          <ion-label>Minhas Críticas</ion-label>
+        </ion-item>
+        
+
+        <ion-item button (click)="logout($event)" detail="false" color="danger">
+          <ion-icon slot="start" name="log-out-outline"></ion-icon>
+          <ion-label>Sair</ion-label>
+        </ion-item>
+        
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>

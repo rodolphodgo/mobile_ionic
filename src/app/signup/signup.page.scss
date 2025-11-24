@@ -1,9 +1,8 @@
 ion-content {
-  /* Fundo com imagem maior e visível, igual à tela de login */
   --background: url('/assets/icon/foto02.png') no-repeat center center / 120%;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* mantém fixa ao rolar */
+  background-attachment: fixed;
 }
 
 .app-logo {

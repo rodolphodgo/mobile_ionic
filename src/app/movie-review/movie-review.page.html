@@ -1,31 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
-    </ion-buttons>
     <ion-title>Crítica do Filme</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close-outline" aria-label="Fechar"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="max-w-xl mx-auto">
+    <ion-card class="shadow-lg rounded-xl mb-6">
+      <ion-card-content>
+        <h2 class="text-xl font-bold mb-4 border-b pb-2 text-primary">Escreva sua crítica</h2>
+        <p class="text-sm text-gray-500 mb-4">Filme ID: {{ movieId }}</p>
 
-  <ion-card>
-    <ion-card-content>
-      <h2>Escreva sua crítica</h2>
-      <p>Filme ID: {{ movieId }}</p>
+        <ion-item lines="none" class="mb-4 ion-no-padding">
+          <ion-label position="stacked" class="font-semibold text-lg pb-1">Sua Nota ({{ rating }} / 5)</ion-label>
+          <div class="flex space-x-2 pt-2">
+            @for (i of [1, 2, 3, 4, 5]; track i) {
+              <ion-icon 
+                name="star" 
+                [color]="rating >= i ? 'warning' : 'medium'" 
+                (click)="setRating(i)" 
+                class="text-4xl cursor-pointer transition-colors duration-150"
+              ></ion-icon>
+            }
+          </div>
+        </ion-item>
+        
+        <ion-textarea
+          [(ngModel)]="reviewText"
+          placeholder="Digite aqui sua crítica detalhada..."
+          auto-grow="true"
+          class="custom-textarea mb-4 p-2 border rounded-lg"
+        ></ion-textarea>
 
-      <ion-textarea
-        [(ngModel)]="reviewText"
-        placeholder="Digite aqui sua crítica..."
-        auto-grow="true"
-        class="textarea">
-      </ion-textarea>
+        <ion-button 
+          expand="block" 
+          color="success" 
+          (click)="saveReview()"
+          [disabled]="!reviewText.trim() || rating === 0"
+          class="h-12 font-bold text-lg"
+        >
+          Enviar Crítica
+          <ion-icon slot="end" name="send-outline"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+    
+    <!-- Seção de listagem de críticas removida, pois a página de revisão é apenas para EDIÇÃO. -->
 
-      <ion-button expand="block" color="success" (click)="saveReview()">
-        Enviar Crítica
-        <ion-icon slot="end" name="send-outline"></ion-icon>
-      </ion-button>
-    </ion-card-content>
-  </ion-card>
-
+  </div>
 </ion-content>
