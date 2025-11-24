@@ -55,6 +55,6 @@ export class SignupPage implements OnInit {
     
 
     alert('Conta criada com sucesso! Faça login para continuar.');
-    this.router.navigate(['/home']);
-  }
+    this.router.navigate(['/login']);
+    
 }
