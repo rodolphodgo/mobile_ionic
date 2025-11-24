@@ -29,7 +29,7 @@
 
     <p class="overview">{{ movie.overview }}</p>
 
-    <ion-button expand="block" color="warning" class="btn-review">
+    <ion-button expand="block" color="warning" class="btn-review" (click)="goToReview()">
       Deixar minha crítica
       <ion-icon slot="end" name="chatbox-ellipses"></ion-icon>
     </ion-button>

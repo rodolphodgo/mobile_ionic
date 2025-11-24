@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crítica do Filme</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-content>
+      <h2>Escreva sua crítica</h2>
+      <p>Filme ID: {{ movieId }}</p>
+
+      <ion-textarea
+        [(ngModel)]="reviewText"
+        placeholder="Digite aqui sua crítica..."
+        auto-grow="true"
+        class="textarea">
+      </ion-textarea>
+
+      <ion-button expand="block" color="success" (click)="saveReview()">
+        Enviar Crítica
+        <ion-icon slot="end" name="send-outline"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

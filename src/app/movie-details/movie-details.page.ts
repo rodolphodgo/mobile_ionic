@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   IonContent,
   IonHeader,
@@ -50,14 +50,23 @@ export class MovieDetailsPage implements OnInit {
   movie: any = null;
   imageBase = 'https://image.tmdb.org/t/p/w500';
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private movieService: MovieService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+
     if (id) {
       this.movieService.getMovie(id).subscribe((res) => {
         this.movie = res;
       });
     }
+  }
+
+  goToReview() {
+    this.router.navigate(['/movie-review', this.movie.id]);
   }
 }
