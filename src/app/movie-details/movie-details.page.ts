@@ -50,7 +50,7 @@ import { star, createOutline } from 'ionicons/icons';
     IonLabel,
     IonSpinner,
     DatePipe,
-    MovieReviewPage // << CORREÇÃO CRUCIAL: Adicionar o componente Modal aqui
+    MovieReviewPage
   ],
   providers: [DatePipe]
 })
