@@ -33,7 +33,7 @@ export class MyReviewsPage implements OnInit {
   }
 
   ngOnInit() {
-    // Garante que o usuário está logado antes de carregar
+    
     if (!this.authService.isLogged()) {
       this.router.navigate(['/login']);
       return;
@@ -60,11 +60,11 @@ export class MyReviewsPage implements OnInit {
   }
 
   async deleteReview(review: MovieReview) {
-    // Em uma aplicação real, você usaria um modal de confirmação, mas aqui usamos o try/catch
+    
     try {
       await this.dataService.deleteReview(review);
       this.presentToast('Crítica removida com sucesso!', 'success');
-      this.loadMyReviews(); // Recarrega a lista
+      this.loadMyReviews(); 
     } catch (error: any) {
       this.presentToast(error.message || 'Falha ao remover crítica.', 'danger');
     }

@@ -25,7 +25,7 @@ export class MovieReviewPage implements OnInit {
   movieId: string = ''; 
   reviewText = '';
   rating: number = 0;
-  // Armazena a crítica existente do usuário para fins de edição
+ 
   myReview: MovieReview | undefined; 
 
   constructor(
@@ -33,7 +33,7 @@ export class MovieReviewPage implements OnInit {
     private router: Router,
     private toastController: ToastController,
     private modalController: ModalController,
-    private dataService: DataService // Injeção do DataService
+    private dataService: DataService 
   ) {
     const routeId = this.route.snapshot.paramMap.get('id');
     if (routeId) {
@@ -63,7 +63,7 @@ export class MovieReviewPage implements OnInit {
     this.modalController.dismiss();
   }
   
-  // Função que salva a crítica usando o DataService
+  
   async saveReview() {
     if (!this.reviewText.trim() || this.rating === 0) {
       this.presentToast('Digite sua crítica e dê uma nota antes de enviar.', 'warning');
@@ -71,7 +71,7 @@ export class MovieReviewPage implements OnInit {
     }
     
     try {
-      // O DataService cuida da lógica de pegar o userId, adicionar data e salvar no LocalStorage
+      
       await this.dataService.addReview({
         movieId: this.movieId,
         reviewText: this.reviewText,
@@ -79,7 +79,7 @@ export class MovieReviewPage implements OnInit {
       });
 
       this.presentToast('Sua crítica foi enviada com sucesso!', 'success'); 
-      // Fecha o modal e notifica a página de detalhes para recarregar as críticas públicas
+      
       this.modalController.dismiss({ reviewSaved: true }); 
 
     } catch (error: any) {
@@ -87,7 +87,7 @@ export class MovieReviewPage implements OnInit {
     }
   }
 
-  // Função que carrega SÓ a crítica do usuário logado (para edição)
+ 
   async loadMyReview() {
     this.myReview = await this.dataService.getMyReviewByMovie(this.movieId);
     if (this.myReview) {

@@ -5,22 +5,22 @@
   --ion-color-medium: #92949c;
 }
 
-// ESTILO CRUCIAL: Define o tamanho do modal e o efeito de blur
+
 :host {
-  // Configura a "janela" flutuante
+  
   --width: 90%; 
   --height: 90%; 
   --border-radius: 12px;
   --box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
 
-  // EFEITO BLUR NO FUNDO (BACKDROP)
+  
   ion-backdrop {
     backdrop-filter: blur(5px);
     background: rgba(0, 0, 0, 0.4);
   }
 }
 
-// Estilos internos do componente
+
 ion-content {
   --background: #f4f5f8;
 }
